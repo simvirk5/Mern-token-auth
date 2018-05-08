@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
 
 class Signup extends Component {
@@ -24,7 +25,15 @@ class Signup extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		console.log('form was submitted', this.setState);
+		console.log('form was submitted', this.state);
+		//post route, passing this.state that has email, name, pass
+		axios.post('/auth/signup', this.state)
+		.then(result => {
+			console.log('SUCCESS!', result);
+		})
+		.catch(err => {
+			console.log('ERROR', err);
+		});
 	}
 
 
