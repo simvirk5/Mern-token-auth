@@ -8,7 +8,7 @@ var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
 // POST /auth/login route - returns a JWT
-router.post('/login', function(req, res, next) {
+router.post('/login', function(req, res) {
   console.log('/auth/login post route', req.body);
 
   //Find out if user exists (for login, they should)
@@ -38,7 +38,7 @@ router.post('/login', function(req, res, next) {
 });
 
 // POST /auth/signup route - create a user in the DB and then log them in
-router.post('/signup', function(req, res, next) {
+router.post('/signup', function(req, res) {
   //TODO: First check if the user already exists
   console.log('/auth/signup post route', req.body);
   //if user already exists
@@ -73,10 +73,10 @@ router.post('/signup', function(req, res, next) {
 });
 
 // This is checked on a browser refresh
-router.post('/me/from/token', function(req, res, next) {
+router.post('/me/from/token', function(req, res) {
   // check header or url parameters or post parameters for token
-  console.log('find user from token', req.body);
-  res.send('keep logged in');
+  console.log('find user from token');
+  res.send({user: req.user });
 });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 
 
 class Signup extends Component {
@@ -30,6 +31,10 @@ class Signup extends Component {
 		axios.post('/auth/signup', this.state)
 		.then(result => {
 			console.log('SUCCESS!', result);
+			localStorage.setItem('mernToken', result.data.token);
+			//Update the user
+			//call to App.js
+			this.props.updateUser();
 		})
 		.catch(err => {
 			console.log('ERROR', err);
@@ -38,7 +43,11 @@ class Signup extends Component {
 
 
 	render() {
+		if(this.props.user){
+			return(<Redirect to="/profile" />);
+		}
 		return(
+
 			<div>
 				<h2>Signup as new user</h2>
 				<form onSubmit={this.handleSubmit}> 
