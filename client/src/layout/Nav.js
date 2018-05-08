@@ -8,6 +8,9 @@ class Nav extends Component {
 			<div>
 				<nav className ="nav">
 					<Link to="/">Home</Link>
+					<Link to="/login">Login</Link>
+					<Link to="/signup">Sign Up</Link>
+					<Link to="/profile">Profile</Link>
 				</nav>
 				<header className="App-header">
 			        <img src={logo} className="App-logo" alt="logo" />
